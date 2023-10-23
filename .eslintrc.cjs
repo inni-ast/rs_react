@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
   extends: [
     'plugin:react/recommended',
@@ -13,7 +14,7 @@ module.exports = {
     jest: true,
     node: true,
   },
-  root: true,
+
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -28,9 +29,9 @@ module.exports = {
     'comma-dangle': ['error', 'only-multiline'],
     'react/prop-types': 'off',
     'react/display-name': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    'prettier/prettier': ['error', { endOfLine: 'auto' }],
-    'prettier/prettier': ['error', { singleQuote: true }],
+    // '@typescript-eslint/explicit-function-return-type': 'off',
+    // 'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    // 'prettier/prettier': ['error', { singleQuote: true }],
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/no-non-null-assertion': 'off',

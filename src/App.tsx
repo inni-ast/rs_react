@@ -12,7 +12,7 @@ export class App extends React.Component {
   }
 }
 type PropsText = {
-  text: string;
+  text: any;
 };
 
 class Text extends React.Component<PropsText> {
