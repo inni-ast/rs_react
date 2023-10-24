@@ -13,10 +13,13 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
-    },
-    "lint-staged": {
-      "*": "prettier --write"
     }
+  },
+  "lint-staged": {
+    "*": [
+      "npm run lint",
+      "npm run format:fix"
+    ]
   },
   "dependencies": {
     "react": "^18.2.0",
