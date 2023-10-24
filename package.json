@@ -2,10 +2,13 @@
   "name": "rs_react",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://inni-ast.github.io/react-gh-pages",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint --ext .js,.cjs,.ts,.tsx . --fix",
     "preview": "vite preview",
     "format:fix": "prettier src --write"
@@ -18,7 +21,8 @@
   "lint-staged": {
     "*": [
       "npm run lint",
-      "npm run format:fix"
+      "npm run format:fix",
+      "git add"
     ]
   },
   "dependencies": {
@@ -39,6 +43,7 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.4.1",
     "prettier": "2.8.8",
