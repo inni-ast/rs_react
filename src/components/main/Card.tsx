@@ -14,6 +14,8 @@ export class Card extends React.Component<CardData> {
         <p>Climate: {this.props.data.climate}</p>
         <p>Terrain: {this.props.data.terrain}</p>
         <p>Diameter: {this.props.data.diameter}</p>
+
+        <p>Cars test</p>
       </div>
     );
   }
