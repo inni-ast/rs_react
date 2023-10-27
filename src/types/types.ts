@@ -1,12 +1,7 @@
-// export interface Response {
-//   count: number;
-//   next: string;
-//   previous: string | null;
-//   results: Array<Data>;
-// }
 export type AppState = {
   data: Array<Data> | [];
   searchValue: string;
+  noPlanet: boolean;
 };
 export interface Data {
   name: string;

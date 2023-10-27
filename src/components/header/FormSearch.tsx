@@ -4,6 +4,7 @@ import styles from './header.module.css';
 type FormSearchProps = {
   searchValue: string;
   handlerChange: (value: string) => void;
+  handlerSearch: () => void;
 };
 export class FormSearch extends React.Component<FormSearchProps> {
   // constructor() {
@@ -11,7 +12,7 @@ export class FormSearch extends React.Component<FormSearchProps> {
   // }
   handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(event.target);
+    this.props.handlerSearch();
   };
   handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.props.handlerChange(event.target.value);

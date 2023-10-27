@@ -5,11 +5,9 @@ import { FormSearch } from './FormSearch';
 type HeaderProps = {
   searchValue: string;
   handlerChange: (value: string) => void;
+  handlerSearch: () => void;
 };
 export class Header extends React.Component<HeaderProps> {
-  // constructor() {
-  //   super();
-  // }
   render() {
     return (
       <header className={styles.header}>
@@ -17,6 +15,7 @@ export class Header extends React.Component<HeaderProps> {
         <FormSearch
           searchValue={this.props.searchValue}
           handlerChange={this.props.handlerChange}
+          handlerSearch={this.props.handlerSearch}
         />
       </header>
     );
