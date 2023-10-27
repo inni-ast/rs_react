@@ -6,6 +6,12 @@
   justify-content: center;
   gap: 5%;
 }
+.form {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3%;
+}
 .input {
   outline: none;
   border: none;

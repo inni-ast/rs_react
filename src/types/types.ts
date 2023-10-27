@@ -4,6 +4,10 @@
 //   previous: string | null;
 //   results: Array<Data>;
 // }
+export type AppState = {
+  data: Array<Data> | [];
+  searchValue: string;
+};
 export interface Data {
   name: string;
   rotation_period: string;

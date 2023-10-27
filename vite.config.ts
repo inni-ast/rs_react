@@ -5,6 +5,6 @@ export default defineConfig({
   base: './',
   plugins: [react()],
   server: {
-    open: '/docs/index.html',
+    open: '/',
   },
 });

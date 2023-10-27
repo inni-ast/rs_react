@@ -1,9 +1,12 @@
 import React from 'react';
 import styles from './header.module.css';
-import { Search } from './Search';
-import { BtnSearch } from './BtnSearch';
+import { FormSearch } from './FormSearch';
 
-export class Header extends React.Component {
+type HeaderProps = {
+  searchValue: string;
+  handlerChange: (value: string) => void;
+};
+export class Header extends React.Component<HeaderProps> {
   // constructor() {
   //   super();
   // }
@@ -11,8 +14,10 @@ export class Header extends React.Component {
     return (
       <header className={styles.header}>
         <h1 className={styles.title}>Planets</h1>
-        <Search />
-        <BtnSearch />
+        <FormSearch
+          searchValue={this.props.searchValue}
+          handlerChange={this.props.handlerChange}
+        />
       </header>
     );
   }
