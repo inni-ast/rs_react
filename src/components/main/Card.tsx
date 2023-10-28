@@ -3,10 +3,6 @@ import styles from './card.module.css';
 import { CardData } from '../../types/types';
 
 export class Card extends React.Component<CardData> {
-  // constructor(props: CardData) {
-  //   super(props);
-  //   console.log(props);
-  // }
   render() {
     return (
       <div className={styles.card}>

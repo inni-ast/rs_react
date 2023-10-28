@@ -1,7 +1,9 @@
 export type AppState = {
   data: Array<Data> | [];
   searchValue: string;
-  noPlanet: boolean;
+  isPlanet: boolean;
+  isLoading: boolean;
+  isError: boolean;
 };
 export interface Data {
   name: string;
@@ -23,3 +25,13 @@ export interface Data {
 export interface CardData {
   data: Data;
 }
+export type AppProps = {
+  title?: string;
+};
+
+export type Props = {
+  children?: React.ReactNode;
+};
+export type ErrorBoundaryState = {
+  isError: boolean;
+};

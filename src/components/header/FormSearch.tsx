@@ -7,9 +7,6 @@ type FormSearchProps = {
   handlerSearch: () => void;
 };
 export class FormSearch extends React.Component<FormSearchProps> {
-  // constructor() {
-  //   super();
-  // }
   handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     this.props.handlerSearch();
