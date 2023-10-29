@@ -56,7 +56,7 @@ export class App extends React.Component<AppProps, AppState> {
   }
   handlerChange(value: string) {
     this.setState({ searchValue: value.trim() });
-    localStorage.setItem('value', value);
+    localStorage.setItem('value', value.trim());
   }
   render() {
     return (
