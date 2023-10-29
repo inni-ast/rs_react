@@ -51,6 +51,7 @@ export class App extends React.Component<AppProps, AppState> {
   handlerSearch() {
     this.setState({ isLoading: true });
     this.setState({ data: [] });
+    this.setState({ isPlanet: false });
     this.getPlanets(this.state.searchValue);
   }
   handlerChange(value: string) {
