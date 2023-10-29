@@ -1,0 +1,41 @@
+#root {
+  width: 100%;
+  background: url(/planets.png) 100% / cover no-repeat;
+  color: azure;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 95%;
+  margin: 0 auto;
+}
+.main,
+.planets {
+  display: flex;
+  gap: 2%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.main {
+  flex-direction: column;
+  padding-bottom: 2%;
+}
+.btn {
+  padding: 0.5em 1.7rem;
+  border: 1px solid goldenrod;
+  cursor: pointer;
+  transition: all 0.7s;
+}
+.btn:hover,
+.btn:active {
+  background-color: #ffdab9;
+  border: 1px solid gold;
+}
+.btn-error {
+  margin: 1% auto;
+  background: #ffc85e;
+}
+.error {
+  align-self: center;
+}

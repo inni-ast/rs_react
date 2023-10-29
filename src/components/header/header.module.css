@@ -1,0 +1,44 @@
+.header {
+  text-align: center;
+  padding-top: 3% 1% 0 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+}
+.form {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3%;
+}
+.input {
+  outline: none;
+  border: none;
+  border: 1px solid grey;
+  height: 1.5rem;
+  cursor: pointer;
+}
+.input:focus,
+.input:active {
+  border: 1px solid goldenrod;
+}
+.btn {
+  padding: 0.5em 1.7rem;
+  border: 1px solid goldenrod;
+  cursor: pointer;
+  transition: all 0.7s;
+}
+.btn:hover,
+.btn:active {
+  background-color: #ffdab9;
+  border: 1px solid gold;
+}
+.title {
+  font-size: 2rem;
+}
+@media (max-width: 500px) {
+  .header {
+    flex-wrap: wrap;
+  }
+}
