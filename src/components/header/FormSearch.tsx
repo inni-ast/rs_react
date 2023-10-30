@@ -1,32 +1,31 @@
 import React from 'react';
 import styles from './header.module.css';
+import { FormSearchProps } from '../../types/types';
 
-type FormSearchProps = {
-  searchValue: string;
-  handlerChange: (value: string) => void;
-  handlerSearch: () => void;
-};
-export class FormSearch extends React.Component<FormSearchProps> {
-  handleSubmit = (event: React.FormEvent) => {
+export function FormSearch({
+  searchValue,
+  handlerSearch,
+  handlerChange,
+}: FormSearchProps) {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    this.props.handlerSearch();
+    handlerSearch();
   };
-  handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.handlerChange(event.target.value);
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handlerChange(event.target.value);
   };
-  render() {
-    return (
-      <form className={styles.form} onSubmit={this.handleSubmit}>
-        <input
-          className={styles.input}
-          type="text"
-          onChange={this.handleChangeInput}
-          value={this.props.searchValue}
-        />
-        <button className={styles.btn} type="submit">
-          Search
-        </button>
-      </form>
-    );
-  }
+
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <input
+        className={styles.input}
+        type="text"
+        onChange={handleChangeInput}
+        value={searchValue}
+      />
+      <button className={styles.btn} type="submit">
+        Search
+      </button>
+    </form>
+  );
 }

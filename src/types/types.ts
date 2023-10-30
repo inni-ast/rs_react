@@ -35,3 +35,13 @@ export type Props = {
 export type ErrorBoundaryState = {
   isError: boolean;
 };
+export type HeaderProps = {
+  searchValue: string;
+  handlerChange: (value: string) => void;
+  handlerSearch: () => void;
+};
+export type FormSearchProps = {
+  searchValue: string;
+  handlerChange: (value: string) => void;
+  handlerSearch: () => void;
+};
