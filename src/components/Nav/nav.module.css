@@ -1,0 +1,20 @@
+.nav {
+  display: flex;
+  gap: 1%;
+  justify-content: space-evenly;
+  list-style: none;
+  color: aliceblue;
+}
+.link {
+  color: aliceblue;
+  font-weight: 700;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.link:hover {
+  text-decoration: underline;
+  color: gold;
+}
+.active {
+  color: gold;
+}

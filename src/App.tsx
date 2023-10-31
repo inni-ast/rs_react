@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
-
 import './App.css';
 import { Header } from './components/header/Header';
 import { Card } from './components/main/Card';
 import { AppProps } from './types/types';
 import { NoResults } from './components/main/NoResults';
-import { planets } from './const/const';
 import { Spinner } from './components/main/Spinner';
 import { Error } from './components/ErrorBoundary/Error';
+import { Nav } from './components/Nav/Nav';
 
 export function App({}: AppProps) {
   const [data, setData] = useState([]);
@@ -15,6 +14,7 @@ export function App({}: AppProps) {
   const [isPlanet, setIsPlanet] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const value = localStorage.getItem('value');
@@ -23,9 +23,11 @@ export function App({}: AppProps) {
       setSearchValue(value);
       getPlanets(value);
     } else {
-      fetch(`https://swapi.dev/api/planets/`)
+      fetch(`https://swapi.dev/api/planets/?page=2`)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
+          setCount(Math.ceil(data.count / 10));
           setIsLoading(false);
           setData(data.results);
         })
@@ -61,9 +63,7 @@ export function App({}: AppProps) {
         handlerSearch={handlerSearch}
       />
       <main className="main">
-        <h2>The names of planets for search</h2>
-        <p>{planets}</p>
-
+        <Nav count={count} />
         <div className="planets">
           {isLoading && <Spinner />}
           {data.map((el, i) => (

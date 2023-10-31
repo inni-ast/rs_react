@@ -45,3 +45,6 @@ export type FormSearchProps = {
   handlerChange: (value: string) => void;
   handlerSearch: () => void;
 };
+export type NavProps = {
+  count: number;
+};
