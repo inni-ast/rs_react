@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { Header } from './components/header/Header';
-import { Card } from './components/main/Card';
 import { AppProps } from './types/types';
-import { NoResults } from './components/main/NoResults';
-import { Spinner } from './components/main/Spinner';
 import { Error } from './components/ErrorBoundary/Error';
 import { Nav } from './components/Nav/Nav';
+import { Routes, Route, useSearchParams } from 'react-router-dom';
+import { Planets } from './components/main/Planets';
 
 export function App({}: AppProps) {
   const [data, setData] = useState([]);
@@ -15,43 +14,51 @@ export function App({}: AppProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [count, setCount] = useState(0);
+  const [isSearch, setIsSearch] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const value = localStorage.getItem('value');
 
-    if (value) {
+    if (value && isSearch) {
       setSearchValue(value);
-      getPlanets(value);
-    } else {
-      fetch(`https://swapi.dev/api/planets/?page=2`)
+      setIsLoading(true);
+      setData([]);
+      setIsPlanet(false);
+      fetch(`https://swapi.dev/api/planets/?${searchParams}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          setIsLoading(false);
+          setIsSearch(false);
+          setCount(Math.ceil(data.count / 10));
+          setData(data.results);
+          data.results.length === 0 ? setIsPlanet(true) : setIsPlanet(false);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      setIsLoading(true);
+      setData([]);
+      fetch(`https://swapi.dev/api/planets/?${searchParams}`)
+        .then((response) => response.json())
+        .then((data) => {
           setCount(Math.ceil(data.count / 10));
           setIsLoading(false);
           setData(data.results);
         })
         .catch((error) => console.log(error));
     }
-  }, []);
+  }, [searchParams, isSearch]);
 
-  const getPlanets = (value: string) => {
-    fetch(`https://swapi.dev/api/planets/?search=${value}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoading(false);
-        setData(data.results);
-        data.results.length === 0 ? setIsPlanet(true) : setIsPlanet(false);
-      })
-      .catch((error) => console.log(error));
-  };
   const handlerSearch = () => {
+    setIsSearch(true);
     setIsLoading(true);
     setData([]);
     setIsPlanet(false);
-    getPlanets(searchValue);
+    setIsSearch(true);
+    setSearchParams({ search: searchValue, page: '1' });
   };
   const handlerChange = (value: string) => {
+    setIsSearch(false);
     setSearchValue(value.trim());
     localStorage.setItem('value', value.trim());
   };
@@ -63,14 +70,21 @@ export function App({}: AppProps) {
         handlerSearch={handlerSearch}
       />
       <main className="main">
-        <Nav count={count} />
-        <div className="planets">
-          {isLoading && <Spinner />}
-          {data.map((el, i) => (
-            <Card data={el} key={i}></Card>
-          ))}
-          {isPlanet && <NoResults />}
-        </div>
+        <Nav count={count} value={searchValue} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Planets isLoading={isLoading} data={data} isPlanet={isPlanet} />
+            }
+          ></Route>
+          <Route
+            path="/:page"
+            element={
+              <Planets isLoading={isLoading} data={data} isPlanet={isPlanet} />
+            }
+          ></Route>
+        </Routes>
         <button className="btn btn-error" onClick={() => setIsError(true)}>
           Get error
         </button>
