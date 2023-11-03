@@ -6,6 +6,7 @@ import { Error } from './components/ErrorBoundary/Error';
 import { Nav } from './components/Nav/Nav';
 import { Routes, Route, useSearchParams } from 'react-router-dom';
 import { Planets } from './components/main/Planets';
+import { Details } from './components/main/Details';
 
 export function App({}: AppProps) {
   const [data, setData] = useState([]);
@@ -83,7 +84,9 @@ export function App({}: AppProps) {
             element={
               <Planets isLoading={isLoading} data={data} isPlanet={isPlanet} />
             }
-          ></Route>
+          >
+            <Route path="?details" element={<Details />}></Route>
+          </Route>
         </Routes>
         <button className="btn btn-error" onClick={() => setIsError(true)}>
           Get error

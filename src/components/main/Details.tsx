@@ -1,18 +1,24 @@
 import styles from './card.module.css';
-import { CardData } from '../../types/types';
+import { useSearchParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-export function Details({ data }: CardData) {
-  console.log(data);
-  return (
-    <div className={styles.card}>
-      Details
-      {/* <p>Name: {data.name}</p>
-      <p>Created{data.created}</p>
-      <p>Climate: {data.climate}</p>
-      <p>Gravity: {data.gravity}</p>
-      <p>Terrain: {data.terrain}</p>
-      <p>Diameter: {data.diameter}</p>
-      <p>Population: {data.population}</p> */}
-    </div>
-  );
+export function Details() {
+  const [searchParams] = useSearchParams();
+  const [planet, setPlanet] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const details = searchParams.get('details') as string;
+  console.log(planet);
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(`https://swapi.dev/api/planets/?search=${details}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setPlanet(data);
+        setIsLoading(false);
+      })
+      .catch((error) => console.log(error));
+  }, [isLoading, details]);
+
+  return <div className={styles.card}>Details</div>;
 }
