@@ -3,7 +3,7 @@ import styles from './nav.module.css';
 import './../../App.css';
 import { NavProps } from '../../types/types';
 
-export function Nav({ count, value }: NavProps) {
+export function Nav({ count, value, isPagination }: NavProps) {
   const [searchParams] = useSearchParams();
   const page = searchParams.get('page') as string;
 
@@ -21,5 +21,5 @@ export function Nav({ count, value }: NavProps) {
       </NavLink>
     </li>
   ));
-  return <nav className={styles.nav}>{links}</nav>;
+  return <nav className={styles.nav}>{isPagination ? links : ''}</nav>;
 }

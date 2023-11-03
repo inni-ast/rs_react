@@ -12,6 +12,7 @@ export function App({}: AppProps) {
   const [searchValue, setSearchValue] = useState('');
   const [isPlanet, setIsPlanet] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPagination, setIsPagination] = useState(false);
   const [isError, setIsError] = useState(false);
   const [count, setCount] = useState(0);
   const [isSearch, setIsSearch] = useState(false);
@@ -21,6 +22,7 @@ export function App({}: AppProps) {
     const value = localStorage.getItem('value');
 
     if (value && isSearch) {
+      setIsPagination(false);
       setSearchValue(value);
       setIsLoading(true);
       setData([]);
@@ -33,6 +35,7 @@ export function App({}: AppProps) {
           setCount(Math.ceil(data.count / 10));
           setData(data.results);
           data.results.length === 0 ? setIsPlanet(true) : setIsPlanet(false);
+          setIsPagination(true);
         })
         .catch((error) => console.log(error));
     } else {
@@ -44,14 +47,16 @@ export function App({}: AppProps) {
           setCount(Math.ceil(data.count / 10));
           setIsLoading(false);
           setData(data.results);
+          setIsPagination(true);
         })
         .catch((error) => console.log(error));
     }
-  }, [searchParams, isSearch]);
+  }, [searchParams, isSearch, isPagination]);
 
   const handlerSearch = () => {
     setIsSearch(true);
     setIsLoading(true);
+    setIsPagination(false);
     setData([]);
     setIsPlanet(false);
     setIsSearch(true);
@@ -70,7 +75,7 @@ export function App({}: AppProps) {
         handlerSearch={handlerSearch}
       />
       <main className="main">
-        <Nav count={count} value={searchValue} />
+        <Nav count={count} value={searchValue} isPagination={isPagination} />
         <Routes>
           <Route
             path="/"
