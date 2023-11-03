@@ -48,5 +48,4 @@ export type FormSearchProps = {
 export type NavProps = {
   count: number;
   value: string;
-  isPagination: boolean;
 };
