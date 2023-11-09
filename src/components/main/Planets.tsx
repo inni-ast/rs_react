@@ -25,7 +25,7 @@ export function Planets({ isLoading, data, isPlanet }: PlanetsProps) {
           return (
             <Link
               className={styles.card}
-              to={`${id}?search=${search}&page=${page}`}
+              to={`/${id}/?search=${search}&page=${page}`}
               key={el.name}
             >
               <Card data={el} key={i}></Card>
