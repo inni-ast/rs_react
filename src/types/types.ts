@@ -24,7 +24,6 @@ export interface Data {
 
 export interface CardData {
   data: Data;
-  id: string;
 }
 export type AppProps = {
   title?: string;

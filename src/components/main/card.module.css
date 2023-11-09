@@ -1,3 +1,8 @@
+.main {
+  display: flex;
+  gap: 2%;
+  position: relative;
+}
 .card {
   display: flex;
   gap: 1%;
@@ -23,4 +28,23 @@
 }
 .btn {
   align-self: center;
+}
+.details {
+  align-self: flex-start;
+  z-index: 2;
+}
+.image {
+  max-width: fit-content;
+  text-align: right;
+}
+.img {
+  max-width: 100%;
+}
+.modal {
+  position: fixed;
+  inset-inline: 0;
+  inset-block: 0;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1;
 }

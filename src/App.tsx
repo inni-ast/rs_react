@@ -20,7 +20,6 @@ export function App({}: AppProps) {
 
   useEffect(() => {
     const value = localStorage.getItem('value');
-
     if (value && isSearch) {
       setSearchValue(value);
       setIsLoading(true);
@@ -78,14 +77,8 @@ export function App({}: AppProps) {
             element={
               <Planets isLoading={isLoading} data={data} isPlanet={isPlanet} />
             }
-          ></Route>
-          <Route
-            path="/:page"
-            element={
-              <Planets isLoading={isLoading} data={data} isPlanet={isPlanet} />
-            }
           >
-            <Route path="?details" element={<Details />}></Route>
+            <Route path=":id" element={<Details />}></Route>
           </Route>
         </Routes>
         <button className="btn btn-error" onClick={() => setIsError(true)}>
