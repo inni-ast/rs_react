@@ -1,9 +1,11 @@
 import { NavLink, useSearchParams } from 'react-router-dom';
 import styles from './nav.module.css';
 import './../../App.css';
-import { NavProps } from '../../types/types';
+import { useContext } from 'react';
+import { Context } from '../../context/context';
 
-export function Nav({ count, value }: NavProps) {
+export function Nav() {
+  const { searchValue, count } = useContext(Context);
   const [searchParams] = useSearchParams();
   const page = searchParams.get('page') as string;
 
@@ -11,7 +13,7 @@ export function Nav({ count, value }: NavProps) {
     <li key={i}>
       <NavLink
         key={i}
-        to={`?search=${value}&page=${i + 1}`}
+        to={`?search=${searchValue}&page=${i + 1}`}
         className={styles.link}
         style={({ isActive }) => ({
           color: isActive && +page === i + 1 ? 'goldenrod' : 'aliceblue',

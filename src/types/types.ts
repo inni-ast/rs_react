@@ -1,5 +1,20 @@
-export type AppState = {
+export type ContextType = {
+  searchValue: string;
+  handlerSearchValue: (value: string) => void;
+  isSearch: boolean;
+  handlerIsSearch: (value: boolean) => void;
+  handlerChange: (value: string) => void;
+  isPlanet: boolean;
+  handlerIsPlanet: (value: boolean) => void;
+  isLoading: boolean;
+  handlerIsLoading: (value: boolean) => void;
+  handlerSearch: () => void;
+  count: number;
   data: Array<Data> | [];
+};
+
+export type AppState = {
+  data: Array<Data> | null;
   searchValue: string;
   isPlanet: boolean;
   isLoading: boolean;
@@ -21,7 +36,6 @@ export interface Data {
   edited: string;
   url: string;
 }
-
 export interface CardData {
   data: Data;
 }
@@ -34,18 +48,4 @@ export type Props = {
 };
 export type ErrorBoundaryState = {
   isError: boolean;
-};
-export type HeaderProps = {
-  searchValue: string;
-  handlerChange: (value: string) => void;
-  handlerSearch: () => void;
-};
-export type FormSearchProps = {
-  searchValue: string;
-  handlerChange: (value: string) => void;
-  handlerSearch: () => void;
-};
-export type NavProps = {
-  count: number;
-  value: string;
 };

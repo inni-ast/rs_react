@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './header.module.css';
-import { FormSearchProps } from '../../types/types';
+import { Context } from '../../context/context';
 
-export function FormSearch({
-  searchValue,
-  handlerSearch,
-  handlerChange,
-}: FormSearchProps) {
+export function FormSearch() {
+  const { searchValue, handlerChange, handlerSearch } = useContext(Context);
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     handlerSearch();
   };
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     handlerChange(event.target.value);
   };
 
